@@ -17,6 +17,7 @@ import {
 
 function DashboardPage() {
   const [stats, setStats] = useState(null)
+  const [analises, setAnalises] = useState([])
   const [periodo, setPeriodo] = useState(7)
   const [loading, setLoading] = useState(true)
   const [erro, setErro] = useState(null)
@@ -26,8 +27,13 @@ function DashboardPage() {
     setErro(null)
     
     try {
-      const statsData = await getEstatisticas(periodo)
+      const [statsData, analisesData] = await Promise.all([
+        getEstatisticas(periodo),
+        getAnalisesRecentes(10)
+      ])
+      
       setStats(statsData)
+      setAnalises(analisesData.analises)
     } catch (error) {
       console.error('Erro ao carregar dados:', error)
       setErro('Erro ao carregar estatísticas')
@@ -216,6 +222,50 @@ function DashboardPage() {
           </div>
         )}
 
+        {/* Análises Recentes */}
+        {analises.length > 0 && (
+          <div className="section">
+            <h3 className="section-title">📋 Análises Recentes</h3>
+            <div className="analises-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Ticket</th>
+                    <th>Usuário</th>
+                    <th>Tipo</th>
+                    <th>Módulo</th>
+                    <th>Data</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {analises.map((analise) => (
+                    <tr key={analise.id}>
+                      <td>
+                        <span className="ticket-badge">#{analise.ticket_numero}</span>
+                      </td>
+                      <td>{analise.usuario_nome || 'Anônimo'}</td>
+                      <td>
+                        <span className={`type-badge ${analise.tipo_identificado}`}>
+                          {analise.tipo_identificado || 'N/A'}
+                        </span>
+                      </td>
+                      <td>{analise.modulo_identificado || '-'}</td>
+                      <td className="date-cell">{formatarData(analise.data_analise)}</td>
+                      <td>
+                        {analise.foi_copiado ? (
+                          <span className="status-badge copiado">Copiado</span>
+                        ) : (
+                          <span className="status-badge pendente">Pendente</span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
 
         {/* Empty State */}
         {stats.total_analises === 0 && (
