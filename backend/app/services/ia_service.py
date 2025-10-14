@@ -183,43 +183,90 @@ IMPORTANTE: Retorne APENAS o JSON, sem texto adicional antes ou depois.
             }
     
     def _gerar_resposta_mock(self, dados_ticket: Dict[str, Any]) -> Dict[str, Any]:
-        """Gera resposta mockada para demonstração"""
+        """Gera resposta mockada baseada nos dados reais do ticket"""
+        
+        # Se tiver análise esperada (para testes), retorna ela
+        if 'analise_esperada' in dados_ticket:
+            analise = dados_ticket['analise_esperada']
+            return {
+                'tipo': analise.get('tipo', 'inconsistencia'),
+                'modulo': analise.get('modulo', 'Não identificado'),
+                'chamado_texto': analise.get('chamado_texto', ''),
+                'metadata': analise.get('metadata', {}),
+                'tokens': 0
+            }
+        
+        # Caso contrário, gera um mock básico com os dados do ticket
+        titulo = dados_ticket.get('titulo', 'Problema não especificado')
+        cliente = dados_ticket.get('cliente', 'Cliente não identificado')
+        ticket_numero = dados_ticket.get('ticket_numero', 'N/A')
+        data_abertura = dados_ticket.get('data_abertura', 'N/A')
+        
+        # Analisa o histórico para extrair informações
+        historico = dados_ticket.get('historico_chat', [])
+        resumo_conversa = self._extrair_resumo_conversa(historico)
         
         chamado_texto = f"""VERSÃO DO SISTEMA EM QUE O PROBLEMA OCORREU:
-R = 12.0.1
+R = Não informada no chat
 
 CÓDIGO DA BASE QUE APRESENTA O PROBLEMA:
-R = 60714
+R = Base do cliente {cliente}
 
 JUSTIFICATIVA DA URGÊNCIA:
-R = Coordenação acadêmica impossibilitada de ajustar quadro de horários. Problema identificado em pelo menos 1 turma, pode afetar outras. Urgência ALTA devido ao início do semestre letivo próximo.
+R = {titulo} - Requer análise técnica
 
 MENU/LOCAL DO SISTEMA EM QUE ACONTECE:
-R = Pedagógico > Quadro de Horários
+R = A ser identificado
 
 BRIEFING:
-R = Ao acessar o menu Pedagógico > Quadro de Horários e tentar salvar as alterações da turma "ADS 3º Semestre", o sistema retorna erro de violação de constraint no banco de dados. O erro ocorre ao clicar em "Salvar" após fazer qualquer alteração nos horários. Mensagem de erro: "Constraint violation on table TB_HORARIOS: duplicate key value violates unique constraint". O problema impede que a coordenação realize ajustes necessários no quadro de horários.
+R = {resumo_conversa}
 
 EXEMPLOS (OBRIGATÓRIO):
-R = Turma: ADS 3º Semestre
-Cliente: {dados_ticket.get('cliente', 'Faculdade Exemplo')}
-Ticket: #{dados_ticket.get('ticket_numero', 'N/A')}
+R = Cliente: {cliente}
+Ticket: #{ticket_numero}
+Total de mensagens no chat: {len(historico)}
 
 OBS:
-R = Data do reporte: {dados_ticket.get('data_abertura', 'N/A')}
-Erro técnico: Constraint violation on table TB_HORARIOS - indica possível problema de dados duplicados ou regras de integridade do banco de dados.
+R = Data do reporte: {data_abertura}
+IMPORTANTE: Esta é uma análise mockada. Configure a API do Gemini para análises mais precisas.
 """
         
         return {
             'tipo': 'inconsistencia',
-            'modulo': 'Pedagógico',
+            'modulo': 'Não identificado',
             'chamado_texto': chamado_texto,
             'metadata': {
-                'tela': 'Quadro de Horários',
-                'acao': 'Salvar',
-                'erro': 'Constraint violation on table TB_HORARIOS',
-                'impacto': 'Coordenação bloqueada'
+                'tela': 'A ser identificado',
+                'acao': 'A ser identificado',
+                'erro': 'A ser identificado',
+                'impacto': 'A ser identificado'
             },
             'tokens': 0
         }
+    
+    def _extrair_resumo_conversa(self, historico: list) -> str:
+        """Extrai um resumo básico da conversa"""
+        if not historico:
+            return "Sem histórico de conversa disponível"
+        
+        # Pega as primeiras e últimas mensagens
+        total = len(historico)
+        resumo_partes = []
+        
+        # Primeiras 3 mensagens
+        for i, msg in enumerate(historico[:3]):
+            autor = msg.get('autor', 'Desconhecido')
+            texto = msg.get('mensagem', '')[:150]  # Limita tamanho
+            resumo_partes.append(f"[{autor}]: {texto}")
+        
+        if total > 6:
+            resumo_partes.append(f"... ({total - 6} mensagens intermediárias) ...")
+        
+        # Últimas 3 mensagens
+        for msg in historico[-3:]:
+            autor = msg.get('autor', 'Desconhecido')
+            texto = msg.get('mensagem', '')[:150]
+            resumo_partes.append(f"[{autor}]: {texto}")
+        
+        return "\n".join(resumo_partes)
 

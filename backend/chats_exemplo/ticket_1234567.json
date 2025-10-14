@@ -240,7 +240,12 @@
   "analise_esperada": {
     "tipo": "inconsistencia",
     "modulo": "Financeiro",
-    "descricao": "Problema com cadastro de grupo split em categorias compartilhadas - configuração não persiste ao trocar de unidade",
-    "solucao_aplicada": "Descompartilhar categoria para permitir configuração específica por unidade"
+    "chamado_texto": "VERSÃO DO SISTEMA EM QUE O PROBLEMA OCORREU:\nR = Não informada no chat\n\nCÓDIGO DA BASE QUE APRESENTA O PROBLEMA:\nR = 73955 - PPNI - IZABELA\n\nJUSTIFICATIVA DA URGÊNCIA:\nR = Cliente não consegue cadastrar grupo split para geração de PIX. Configuração não persiste ao trocar de unidade, impedindo o uso correto da funcionalidade de pagamentos com split.\n\nMENU/LOCAL DO SISTEMA EM QUE ACONTECE:\nR = Financeiro > Configuração de Categorias > Grupo Split\n\nBRIEFING:\nR = Cliente reportou que ao alterar o cadastro de \"grupo split\" em todas as unidades e salvar, o sistema gera o PIX normalmente. Porém, quando troca de unidade, o cadastro não fica salvo e volta a dar erro. A cliente tentou 3 vezes realizar o procedimento sem sucesso. Durante acesso remoto com o atendente Lucas, foi identificado que o problema ocorre porque a categoria estava configurada como \"compartilhada\" entre as unidades. Quando uma categoria é compartilhada, ao selecionar o grupo split em uma unidade, automaticamente desvincula das outras unidades. A cliente questionou se o problema era devido à categoria ser compartilhada, o que foi confirmado pela equipe de suporte. A solução aplicada foi descompartilhar a categoria para permitir configuração específica por unidade.\n\nEXEMPLOS (OBRIGATÓRIO):\nR = Unidade afetada: 73955 - PPNI - IZABELA\nFuncionalidade: Cadastro de grupo split para PIX\nProblema: Configuração não persiste ao trocar de unidade\nCausa identificada: Categoria compartilhada entre unidades\nSolução: Descompartilhar categoria\n\nOBS:\nR = Email para retorno: ppnipapelaria@gmail.com\nAtendente: Lucas Passaglia Santos\nAcesso remoto realizado via TeamViewer (ID: 833 287 931)\nCliente testou múltiplas vezes antes de reportar o problema",
+    "metadata": {
+      "tela": "Configuração de Categorias - Grupo Split",
+      "acao": "Salvar configuração de grupo split",
+      "erro": "Configuração não persiste ao trocar de unidade",
+      "impacto": "Impossibilidade de usar PIX com grupo split"
+    }
   }
 }

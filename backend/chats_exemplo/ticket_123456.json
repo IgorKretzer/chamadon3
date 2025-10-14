@@ -183,13 +183,15 @@
     }
   ],
   "analise_esperada": {
-    "versao_sistema": "12.0.1",
-    "codigo_base": "2938 e 68330",
-    "justificativa_urgencia": "Impossibilidade de processar arquivo de retorno do Banco Inter, impedindo a conciliação bancária e causando impacto na rotina financeira da instituição",
-    "menu_local": "Financeiro > Processamento de Arquivo de Retorno > Banco Inter",
-    "briefing": "Cliente reportou erro ao tentar processar arquivo de retorno (.ret) do Banco Inter. O sistema apresenta erro 'Conversion from string \"ONTO DEVERÁ, S\" to type Double is not valid', impedindo a leitura do arquivo. Durante investigação com a atendente Cirlene, foi identificado que o arquivo contém 2 eventos: um erro de emissão e uma liquidação. O sistema está tentando ler a mensagem de erro como uma variável numérica quando deveria desprezar a linha. Após acesso remoto, foi identificado um segundo erro relacionado ao número do boleto quitado, onde o sistema estava lendo a posição incorreta (puxando número 90 ao invés do número 1 correto). O problema está relacionado à configuração do layout do Banco Inter que foi feito via ticket 1150208 em outra unidade e replicado para esta. Como o Banco Inter não possui homologação completa com o Sponte, são necessários ajustes na leitura do arquivo de retorno.",
-    "exemplos": "Unidades afetadas: 2938 e 68330\nArquivo: ucn.ret\nBanco: Inter\nErro 1: Conversion from string \"ONTO DEVERÁ, S\" to type 'Double' is not valid\nErro 2: Sistema lê posição incorreta do número do boleto (posições 98-107 do arquivo)\nTicket relacionado: 1150208 (configuração original do layout)",
-    "obs": "Cliente forneceu email gb_thiago@yahoo.com.br para retorno. Demanda precisa incluir ambas as unidades (2938 e 68330) na correção. Layout do Banco Inter precisa de ajustes para processar corretamente eventos de erro de emissão sem tentar converter mensagens de texto em valores numéricos."
+    "tipo": "inconsistencia",
+    "modulo": "Financeiro",
+    "chamado_texto": "VERSÃO DO SISTEMA EM QUE O PROBLEMA OCORREU:\nR = 12.0.1\n\nCÓDIGO DA BASE QUE APRESENTA O PROBLEMA:\nR = 2938 e 68330\n\nJUSTIFICATIVA DA URGÊNCIA:\nR = Impossibilidade de processar arquivo de retorno do Banco Inter, impedindo a conciliação bancária e causando impacto na rotina financeira da instituição\n\nMENU/LOCAL DO SISTEMA EM QUE ACONTECE:\nR = Financeiro > Processamento de Arquivo de Retorno > Banco Inter\n\nBRIEFING:\nR = Cliente reportou erro ao tentar processar arquivo de retorno (.ret) do Banco Inter. O sistema apresenta erro 'Conversion from string \"ONTO DEVERÁ, S\" to type Double is not valid', impedindo a leitura do arquivo. Durante investigação com a atendente Cirlene, foi identificado que o arquivo contém 2 eventos: um erro de emissão e uma liquidação. O sistema está tentando ler a mensagem de erro como uma variável numérica quando deveria desprezar a linha. Após acesso remoto, foi identificado um segundo erro relacionado ao número do boleto quitado, onde o sistema estava lendo a posição incorreta (puxando número 90 ao invés do número 1 correto). O problema está relacionado à configuração do layout do Banco Inter que foi feito via ticket 1150208 em outra unidade e replicado para esta. Como o Banco Inter não possui homologação completa com o Sponte, são necessários ajustes na leitura do arquivo de retorno.\n\nEXEMPLOS (OBRIGATÓRIO):\nR = Unidades afetadas: 2938 e 68330\nArquivo: ucn.ret\nBanco: Inter\nErro 1: Conversion from string \"ONTO DEVERÁ, S\" to type 'Double' is not valid\nErro 2: Sistema lê posição incorreta do número do boleto (posições 98-107 do arquivo)\nTicket relacionado: 1150208 (configuração original do layout)\n\nOBS:\nR = Cliente forneceu email gb_thiago@yahoo.com.br para retorno. Demanda precisa incluir ambas as unidades (2938 e 68330) na correção. Layout do Banco Inter precisa de ajustes para processar corretamente eventos de erro de emissão sem tentar converter mensagens de texto em valores numéricos.",
+    "metadata": {
+      "tela": "Processamento de Arquivo de Retorno",
+      "acao": "Processar arquivo .ret do Banco Inter",
+      "erro": "Conversion from string to type Double is not valid",
+      "impacto": "Conciliação bancária bloqueada"
+    }
   }
 }
 
