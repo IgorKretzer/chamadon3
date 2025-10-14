@@ -8,6 +8,10 @@
     {
       "source": "/api/:path*",
       "destination": "https://ia-chamados-backend.onrender.com/api/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
