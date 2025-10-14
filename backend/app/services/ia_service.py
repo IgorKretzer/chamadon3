@@ -63,12 +63,13 @@ com base em tickets de suporte.
 
 === BASE DE CONHECIMENTO DO SISTEMA SPONTE ===
 
-MÓDULOS DO SISTEMA:
-- ACADÊMICO: Gestão de turmas, matrizes curriculares, quadro de horários, diário de classe, notas e frequências
-- FINANCEIRO: Emissão de boletos, controle de inadimplência, renegociação, descontos
-- SECRETARIA: Cadastro de alunos, matrículas, documentos, histórico escolar
-- PORTAL DO ALUNO: Acesso do aluno a notas, faltas, boletos, documentos
-- BIBLIOTECA: Controle de acervo, empréstimos, reservas
+MÓDULOS DO SISTEMA (use APENAS estes):
+- CADASTROS: Cadastro de alunos, responsáveis, funcionários, professores, dados cadastrais gerais
+- PEDAGÓGICO: Gestão de turmas, matrizes curriculares, quadro de horários, diário de classe, notas, frequências, boletins
+- FINANCEIRO: Emissão de boletos, controle de inadimplência, renegociação, descontos, processamento de retorno bancário
+- RELATÓRIOS: Geração de relatórios diversos do sistema
+- GERENCIAL: Dashboards, indicadores, gestão e visão gerencial
+- UTILITÁRIOS: Ferramentas auxiliares, configurações, importações, exportações
 
 ERROS COMUNS:
 - "Constraint violation" → Problema de dados duplicados ou regras de integridade do banco
@@ -108,25 +109,28 @@ HISTÓRICO DA CONVERSA:
   }}
 }}
 
-O campo "chamado_texto" deve seguir este formato:
+O campo "chamado_texto" deve seguir EXATAMENTE este formato:
 
-TÍTULO: [Resumo em 1 linha]
+VERSÃO DO SISTEMA EM QUE O PROBLEMA OCORREU:
+R = [versão do sistema, se mencionada no chat]
 
-MÓDULO: [Nome do módulo]
+CÓDIGO DA BASE QUE APRESENTA O PROBLEMA:
+R = [código da base/unidade afetada]
 
-DESCRIÇÃO:
-[Descrição clara do problema]
+JUSTIFICATIVA DA URGÊNCIA:
+R = [descrição clara do impacto e urgência do problema]
 
-PASSOS PARA REPRODUZIR:
-1. [Passo 1]
-2. [Passo 2]
-3. [Erro acontece aqui]
+MENU/LOCAL DO SISTEMA EM QUE ACONTECE:
+R = [caminho completo do menu ou tela onde o problema ocorre]
 
-ERRO:
-[Mensagem de erro exata se houver]
+BRIEFING:
+R = [descrição detalhada do problema, incluindo o contexto da conversa, diagnóstico realizado, tentativas de solução e conclusão do atendente]
 
-IMPACTO:
-[Quantos afetados / urgência]
+EXEMPLOS (OBRIGATÓRIO):
+R = [dados específicos afetados: usuários, registros, unidades, códigos, números, etc]
+
+OBS:
+R = [informações adicionais relevantes: emails de contato, tickets relacionados, observações técnicas]
 
 Se NÃO for inconsistência, retorne:
 {{
@@ -181,38 +185,34 @@ IMPORTANTE: Retorne APENAS o JSON, sem texto adicional antes ou depois.
     def _gerar_resposta_mock(self, dados_ticket: Dict[str, Any]) -> Dict[str, Any]:
         """Gera resposta mockada para demonstração"""
         
-        chamado_texto = f"""TÍTULO: Erro ao salvar Quadro de Horários - Constraint violation
+        chamado_texto = f"""VERSÃO DO SISTEMA EM QUE O PROBLEMA OCORREU:
+R = 12.0.1
 
-MÓDULO: Acadêmico
+CÓDIGO DA BASE QUE APRESENTA O PROBLEMA:
+R = 60714
 
-DESCRIÇÃO:
-Ao acessar o menu Acadêmico > Quadro de Horários e tentar salvar as alterações da turma "ADS 3º Semestre", o sistema retorna erro de violação de constraint no banco de dados.
+JUSTIFICATIVA DA URGÊNCIA:
+R = Coordenação acadêmica impossibilitada de ajustar quadro de horários. Problema identificado em pelo menos 1 turma, pode afetar outras. Urgência ALTA devido ao início do semestre letivo próximo.
 
-PASSOS PARA REPRODUZIR:
-1. Acessar menu Acadêmico
-2. Clicar em Quadro de Horários
-3. Selecionar turma "ADS 3º Semestre"
-4. Fazer alteração em qualquer horário
-5. Clicar em "Salvar"
-6. Sistema exibe erro
+MENU/LOCAL DO SISTEMA EM QUE ACONTECE:
+R = Pedagógico > Quadro de Horários
 
-ERRO:
-"Constraint violation on table TB_HORARIOS: duplicate key value violates unique constraint"
+BRIEFING:
+R = Ao acessar o menu Pedagógico > Quadro de Horários e tentar salvar as alterações da turma "ADS 3º Semestre", o sistema retorna erro de violação de constraint no banco de dados. O erro ocorre ao clicar em "Salvar" após fazer qualquer alteração nos horários. Mensagem de erro: "Constraint violation on table TB_HORARIOS: duplicate key value violates unique constraint". O problema impede que a coordenação realize ajustes necessários no quadro de horários.
 
-IMPACTO:
-Coordenação acadêmica impossibilitada de ajustar quadro de horários.
-Problema identificado em pelo menos 1 turma, pode afetar outras.
-Urgência: ALTA - Início do semestre letivo próximo.
+EXEMPLOS (OBRIGATÓRIO):
+R = Turma: ADS 3º Semestre
+Cliente: {dados_ticket.get('cliente', 'Faculdade Exemplo')}
+Ticket: #{dados_ticket.get('ticket_numero', 'N/A')}
 
-INFORMAÇÕES ADICIONAIS:
-- Cliente: {dados_ticket.get('cliente', 'N/A')}
-- Ticket: #{dados_ticket.get('ticket_numero', 'N/A')}
-- Data do reporte: {dados_ticket.get('data_abertura', 'N/A')}
+OBS:
+R = Data do reporte: {dados_ticket.get('data_abertura', 'N/A')}
+Erro técnico: Constraint violation on table TB_HORARIOS - indica possível problema de dados duplicados ou regras de integridade do banco de dados.
 """
         
         return {
             'tipo': 'inconsistencia',
-            'modulo': 'Acadêmico',
+            'modulo': 'Pedagógico',
             'chamado_texto': chamado_texto,
             'metadata': {
                 'tela': 'Quadro de Horários',

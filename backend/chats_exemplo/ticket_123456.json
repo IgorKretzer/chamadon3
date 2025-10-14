@@ -1,0 +1,195 @@
+{
+  "ticket_numero": "123456",
+  "cliente": "Teste",
+  "titulo": "Erro ao processar arquivo de retorno - Banco Inter",
+  "data_abertura": "2025-10-10T16:10:00",
+  "chat_completo": "Olá, Seja bem-vindo(a) ao atendimento Sponte! Sou o Spontinho seu assistente virtual. 😁 Com qual setor você gostaria de falar?\n16:10\n2938 - Thiago Gouvea\nSuporte Técnico\n16:10\nCom qual dos tópicos abaixo posso lhe ajudar?\n16:10\n2938 - Thiago Gouvea\nFalar com um Atendente 📞\n16:10\nUm momento, vou transferir para um de nossos atendentes! 😉\n16:10\nOlá! 😊 \n\n \n\nEm breve, retornaremos aqui com a sua resposta. Muito obrigado por aguardar e conte sempre com a gente! 💙\n\n16:11\nCirlene Lima da Rosa\nEntrou na conversa\n16:11\nCirlene Lima da Rosa\nOlá! Tudo bem contigo? 😊 \n\nComo posso te ajudar neste momento? 🥰\n\n16:11\n2938 - Thiago Gouvea\nOi! Estou com erro para processar arquivo de retorno?\n16:11\n2938 - Thiago Gouvea\nConversion from string \"ONTO DEVERÁ, S\" to type 'Double' is not valid.\n\n16:11\n2938 - Thiago Gouvea\nucn.ret | Download1 KB\nEsse é o arquivo\n16:13\nCirlene Lima da Rosa\nSó um momento deixa eu verificar aqui \n16:15\nCirlene Lima da Rosa\nQue erro está dando?\n16:16\n2938 - Thiago Gouvea\nCaptura de tela 2025-10-10 161625.png\nCaptura de tela 2025-10-10 161625.png | Download75 KB\nSegue print\n16:18\n2938 - Thiago Gouvea\nO que parece: o arquivo está com 2 eventos. O primeiro é um erro de emissao e o segundo, uma liquidação. No evento de erro de emissão, o sistema está tentando ler a msg de erro como uma variável numérica. Poderia desprezar a linha.\n16:23\nCirlene Lima da Rosa\nEstá fazendo a leitura do arquivo correto?\nNão era para dar esse erro\n16:23\n2938 - Thiago Gouvea\nSim, é esse que te enviei\n16:24\n2938 - Thiago Gouvea\nHeheh!! Não era mesmo!\nVc quer acessar pra fazer? Prefere acesso remoto ou que te libere um acesso teste?\n16:24\nCirlene Lima da Rosa\nO que gostaria que fizesse?\n16:26\n2938 - Thiago Gouvea\nUé, Cirlene. Gostaria que corrigissem!\n16:26\nCirlene Lima da Rosa\né so colocar o certo agpra \nAgora \n16:27\nCirlene Lima da Rosa\nPosso acessar sim \n16:28\n2938 - Thiago Gouvea\n1 544 023 735\n16:28\nCirlene Lima da Rosa\nimage.png\nimage.png | Download63 KB\n16:29\n2938 - Thiago Gouvea\nEsse que enviei é do Anydesk. Vc tem?\n16:29\nCirlene Lima da Rosa\nPodemos fazer uma conexão remota através do programa TeamViewer para que eu tenha acesso à sua tela e consiga te auxiliar de forma melhor? Para isso, siga os seguintes passos:\n\n1. Caso não tenha o TeamViewer em sua máquina, baixe-o no seguinte link: https://download.teamviewer.com/download/TeamViewerQS_x64.exe\n2. Execute o TeamViewer e me informe os dados exibidos em \"Sua ID\" e \"Senha\", na parte inferior da janela. Para facilitar, você pode utilizar o ícone de \"Copiar\" ao lado direito e colar aqui no chat;\n\nApós me repassar estes dados de acesso, peço que aguarde alguns instantes para iniciarmos a conexão. Fico no aguardo. 😁\n\n16:29\nCirlene Lima da Rosa\nNosso padrão é o TeamViewe\n16:30\n2938 - Thiago Gouvea\nOk, 1 min q vou baixar\n16:30\nCirlene Lima da Rosa\nOk\n16:31\n2938 - Thiago Gouvea\nUse as credenciais abaixo para iniciar uma sessão. TeamViewer ID: 1 061 571 776 Senha: nyri8g3m\n16:33\nCirlene Lima da Rosa\nmas não é o mesmo arquivo?\nAquele que você disse que estava errado?\n16:33\n2938 - Thiago Gouvea\nucn.ret | Download1 KB\n16:34\n2938 - Thiago Gouvea\nO mesmo que te enviei no começo da conversa e que estou tentando processar. Este\n16:35\n2938 - Thiago Gouvea\nVc quer q eu carregue novamente? Quer que abra o arquivo? Como quer proceder?\n16:37\nCirlene Lima da Rosa\nSó um momento \nvamos fazer uma verificação interna aqui \n16:40\nCirlene Lima da Rosa\nVerifica por favor \nagora \nDeu certo \n16:42\n2938 - Thiago Gouvea\nPassamos desse erro. Mas está com erro agora no campo de número do boleto quitado. Pode verificar?\nO título é esse, número 1. Está puxando 90\n16:50\nCirlene Lima da Rosa\nEsse número de boleto 90 veio no arquivo que você está lendo\nEsse boletos que você quer localizar, ele foi gerado por qual banco?\n16:52\n2938 - Thiago Gouvea\nVeja aqui no arquivo. Posições 98 a 107. Está com valor 1 mesmo\nO banco é Inter\n16:54\n2938 - Thiago Gouvea\nAcredito que tenha relação com o que vc mexeu no erro anterior. Veja no manual: a posição que precisamos ler é a 98. Mas se coloco 98, dá o erro do início da conversa\n16:54\nCirlene Lima da Rosa\nEntendi\nSó ressaltando que não fizemos alterações.\n16:55\n2938 - Thiago Gouvea\nTalvez foi sua área de suporte, não?\nVeja a tela de  configuração\n16:55\nCirlene Lima da Rosa\nNão não, só pedi pro pessoal confirmar se tinha alguma configuração ou algo parecido, mas não realizamos alteração.\nDeixa eu conferir uma coisa aqui.\n16:56\nCirlene Lima da Rosa\nMomentinho.\n17:01\nCirlene Lima da Rosa\nThiago, me diz uma coisa..\nEsse layout do banco Inter, você cadastraram por conta própria?\n17:02\n2938 - Thiago Gouvea\nNão, foi feito via chamado com vcs em outra unidade\n17:03\n2938 - Thiago Gouvea\nTicket 1150208 \n17:05\nCirlene Lima da Rosa\nAh, claro.\n17:06\nCirlene Lima da Rosa\nE nessa unidade de agora, você replicou as configurações da outra unidade?\n17:06\n2938 - Thiago Gouvea\nSim\n17:07\nCirlene Lima da Rosa\nPerfeito, entendi.\nEntão, como teve toda essa questão com o banco Inter, vou precisar abrir uma demanda para o time verificar aqui.\n17:08\nCirlene Lima da Rosa\nComo não o banco Inter não tinha homologação com o Sponte, pode ter alguns ajustes que precisar ser feitos nessa unidade para funcionar aqui também.\n17:09\nCirlene Lima da Rosa\nBasicamente, teremos que fazer o mesmo processo da outra unidade, realizar testes de pagamento e tudo mais.\nVocê poderia me informar um e-mail pra eu te retornar, por gentileza?\n17:09\n2938 - Thiago Gouvea\nOk. Por favor, inclua a unidade 68330 na mesma correção. É a mesma questão que discutimos.\ngb_thiago@yahoo.com.br\n17:09\nCirlene Lima da Rosa\n2938\n68330 \n17:09\n2938 - Thiago Gouvea\nIsso\n17:10\nCirlene Lima da Rosa\nÓtimo.\nAlgo mais que possa ajudar?\n17:11\n2938 - Thiago Gouvea\nSomente isso, obrigado\n17:12\nCirlene Lima da Rosa\nFoi um prazer poder ajudar você hoje!\n😊 Sua opinião é Sua muito importante para mim. \nPoderia compartilhar como foi sua experiência com o meu atendimento?\nDesde já agradeço, tenha excelente dia e um ótimo trabalho\n17:12\nChat finalizado. A Sponte agradece o seu contato! 💙\n\n17:12\nCirlene Lima da Rosa\nFinalizou a conversa",
+  "historico_chat": [
+    {
+      "autor": "Sistema",
+      "mensagem": "Olá, Seja bem-vindo(a) ao atendimento Sponte! Sou o Spontinho seu assistente virtual. 😁 Com qual setor você gostaria de falar?"
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "Suporte Técnico"
+    },
+    {
+      "autor": "Sistema",
+      "mensagem": "Com qual dos tópicos abaixo posso lhe ajudar?"
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "Falar com um Atendente 📞"
+    },
+    {
+      "autor": "Cirlene Lima da Rosa",
+      "mensagem": "Olá! Tudo bem contigo? 😊 Como posso te ajudar neste momento? 🥰"
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "Oi! Estou com erro para processar arquivo de retorno?"
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "Conversion from string \"ONTO DEVERÁ, S\" to type 'Double' is not valid."
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "ucn.ret | Download1 KB - Esse é o arquivo"
+    },
+    {
+      "autor": "Cirlene Lima da Rosa",
+      "mensagem": "Só um momento deixa eu verificar aqui"
+    },
+    {
+      "autor": "Cirlene Lima da Rosa",
+      "mensagem": "Que erro está dando?"
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "Captura de tela 2025-10-10 161625.png - Segue print"
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "O que parece: o arquivo está com 2 eventos. O primeiro é um erro de emissao e o segundo, uma liquidação. No evento de erro de emissão, o sistema está tentando ler a msg de erro como uma variável numérica. Poderia desprezar a linha."
+    },
+    {
+      "autor": "Cirlene Lima da Rosa",
+      "mensagem": "Está fazendo a leitura do arquivo correto? Não era para dar esse erro"
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "Sim, é esse que te enviei"
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "Heheh!! Não era mesmo! Vc quer acessar pra fazer? Prefere acesso remoto ou que te libere um acesso teste?"
+    },
+    {
+      "autor": "Cirlene Lima da Rosa",
+      "mensagem": "O que gostaria que fizesse?"
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "Ué, Cirlene. Gostaria que corrigissem!"
+    },
+    {
+      "autor": "Cirlene Lima da Rosa",
+      "mensagem": "é so colocar o certo agora"
+    },
+    {
+      "autor": "Cirlene Lima da Rosa",
+      "mensagem": "Posso acessar sim"
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "Use as credenciais abaixo para iniciar uma sessão. TeamViewer ID: 1 061 571 776 Senha: nyri8g3m"
+    },
+    {
+      "autor": "Cirlene Lima da Rosa",
+      "mensagem": "mas não é o mesmo arquivo? Aquele que você disse que estava errado?"
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "O mesmo que te enviei no começo da conversa e que estou tentando processar. Este"
+    },
+    {
+      "autor": "Cirlene Lima da Rosa",
+      "mensagem": "Só um momento vamos fazer uma verificação interna aqui"
+    },
+    {
+      "autor": "Cirlene Lima da Rosa",
+      "mensagem": "Verifica por favor agora. Deu certo"
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "Passamos desse erro. Mas está com erro agora no campo de número do boleto quitado. Pode verificar? O título é esse, número 1. Está puxando 90"
+    },
+    {
+      "autor": "Cirlene Lima da Rosa",
+      "mensagem": "Esse número de boleto 90 veio no arquivo que você está lendo. Esse boletos que você quer localizar, ele foi gerado por qual banco?"
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "Veja aqui no arquivo. Posições 98 a 107. Está com valor 1 mesmo. O banco é Inter"
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "Acredito que tenha relação com o que vc mexeu no erro anterior. Veja no manual: a posição que precisamos ler é a 98. Mas se coloco 98, dá o erro do início da conversa"
+    },
+    {
+      "autor": "Cirlene Lima da Rosa",
+      "mensagem": "Entendi. Só ressaltando que não fizemos alterações."
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "Talvez foi sua área de suporte, não? Veja a tela de configuração"
+    },
+    {
+      "autor": "Cirlene Lima da Rosa",
+      "mensagem": "Não não, só pedi pro pessoal confirmar se tinha alguma configuração ou algo parecido, mas não realizamos alteração. Deixa eu conferir uma coisa aqui."
+    },
+    {
+      "autor": "Cirlene Lima da Rosa",
+      "mensagem": "Thiago, me diz uma coisa.. Esse layout do banco Inter, você cadastraram por conta própria?"
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "Não, foi feito via chamado com vcs em outra unidade"
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "Ticket 1150208"
+    },
+    {
+      "autor": "Cirlene Lima da Rosa",
+      "mensagem": "E nessa unidade de agora, você replicou as configurações da outra unidade?"
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "Sim"
+    },
+    {
+      "autor": "Cirlene Lima da Rosa",
+      "mensagem": "Perfeito, entendi. Então, como teve toda essa questão com o banco Inter, vou precisar abrir uma demanda para o time verificar aqui."
+    },
+    {
+      "autor": "Cirlene Lima da Rosa",
+      "mensagem": "Como não o banco Inter não tinha homologação com o Sponte, pode ter alguns ajustes que precisar ser feitos nessa unidade para funcionar aqui também."
+    },
+    {
+      "autor": "Cirlene Lima da Rosa",
+      "mensagem": "Basicamente, teremos que fazer o mesmo processo da outra unidade, realizar testes de pagamento e tudo mais. Você poderia me informar um e-mail pra eu te retornar, por gentileza?"
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "Ok. Por favor, inclua a unidade 68330 na mesma correção. É a mesma questão que discutimos. gb_thiago@yahoo.com.br"
+    },
+    {
+      "autor": "Cirlene Lima da Rosa",
+      "mensagem": "2938 e 68330"
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "Isso"
+    },
+    {
+      "autor": "Cirlene Lima da Rosa",
+      "mensagem": "Ótimo. Algo mais que possa ajudar?"
+    },
+    {
+      "autor": "2938 - Thiago Gouvea",
+      "mensagem": "Somente isso, obrigado"
+    }
+  ],
+  "analise_esperada": {
+    "versao_sistema": "12.0.1",
+    "codigo_base": "2938 e 68330",
+    "justificativa_urgencia": "Impossibilidade de processar arquivo de retorno do Banco Inter, impedindo a conciliação bancária e causando impacto na rotina financeira da instituição",
+    "menu_local": "Financeiro > Processamento de Arquivo de Retorno > Banco Inter",
+    "briefing": "Cliente reportou erro ao tentar processar arquivo de retorno (.ret) do Banco Inter. O sistema apresenta erro 'Conversion from string \"ONTO DEVERÁ, S\" to type Double is not valid', impedindo a leitura do arquivo. Durante investigação com a atendente Cirlene, foi identificado que o arquivo contém 2 eventos: um erro de emissão e uma liquidação. O sistema está tentando ler a mensagem de erro como uma variável numérica quando deveria desprezar a linha. Após acesso remoto, foi identificado um segundo erro relacionado ao número do boleto quitado, onde o sistema estava lendo a posição incorreta (puxando número 90 ao invés do número 1 correto). O problema está relacionado à configuração do layout do Banco Inter que foi feito via ticket 1150208 em outra unidade e replicado para esta. Como o Banco Inter não possui homologação completa com o Sponte, são necessários ajustes na leitura do arquivo de retorno.",
+    "exemplos": "Unidades afetadas: 2938 e 68330\nArquivo: ucn.ret\nBanco: Inter\nErro 1: Conversion from string \"ONTO DEVERÁ, S\" to type 'Double' is not valid\nErro 2: Sistema lê posição incorreta do número do boleto (posições 98-107 do arquivo)\nTicket relacionado: 1150208 (configuração original do layout)",
+    "obs": "Cliente forneceu email gb_thiago@yahoo.com.br para retorno. Demanda precisa incluir ambas as unidades (2938 e 68330) na correção. Layout do Banco Inter precisa de ajustes para processar corretamente eventos de erro de emissão sem tentar converter mensagens de texto em valores numéricos."
+  }
+}
+

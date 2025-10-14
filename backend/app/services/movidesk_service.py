@@ -1,5 +1,7 @@
 import httpx
 import os
+import json
+from pathlib import Path
 from typing import Dict, Any, Optional
 
 class MovideskService:
@@ -20,6 +22,12 @@ class MovideskService:
         Returns:
             Dicionário com dados do ticket e histórico de chat
         """
+        
+        # Verifica se existe um chat de exemplo para este ticket
+        chat_exemplo = self._get_chat_exemplo(ticket_numero)
+        if chat_exemplo:
+            print(f"📁 Usando chat de exemplo para ticket {ticket_numero}")
+            return chat_exemplo
         
         # Se não tiver token configurado, retorna dados mockados para demonstração
         if not self.api_token or self.api_token == "seu_token_aqui":
@@ -131,6 +139,44 @@ class MovideskService:
             'historico_chat': historico,
             'total_mensagens': len(historico)
         }
+    
+    def _get_chat_exemplo(self, ticket_numero: str) -> Optional[Dict[str, Any]]:
+        """
+        Busca chat de exemplo na pasta chats_exemplo
+        
+        Args:
+            ticket_numero: Número do ticket
+            
+        Returns:
+            Dados do chat de exemplo ou None se não existir
+        """
+        try:
+            # Caminho para a pasta de chats de exemplo
+            base_dir = Path(__file__).parent.parent.parent
+            chats_dir = base_dir / "chats_exemplo"
+            arquivo_chat = chats_dir / f"ticket_{ticket_numero}.json"
+            
+            if arquivo_chat.exists():
+                with open(arquivo_chat, 'r', encoding='utf-8') as f:
+                    dados = json.load(f)
+                    
+                # Retorna no formato esperado pelo sistema
+                return {
+                    'ticket_numero': dados.get('ticket_numero', ticket_numero),
+                    'titulo': dados.get('titulo', ''),
+                    'cliente': dados.get('cliente', 'Teste'),
+                    'responsavel': 'Sistema de Testes',
+                    'data_abertura': dados.get('data_abertura', ''),
+                    'historico_chat': dados.get('historico_chat', []),
+                    'analise_esperada': dados.get('analise_esperada'),  # Informação extra para validação
+                    'fonte': 'chat_exemplo'  # Marca que veio de exemplo
+                }
+            
+            return None
+            
+        except Exception as e:
+            print(f"⚠️ Erro ao carregar chat de exemplo: {str(e)}")
+            return None
     
     def _get_mock_ticket(self, ticket_numero: str) -> Dict[str, Any]:
         """Retorna dados mockados para demonstração"""
