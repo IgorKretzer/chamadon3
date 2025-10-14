@@ -7,7 +7,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://ia-chamados-backend.onrender.com/:path*"
+      "destination": "https://ia-chamados-backend.onrender.com/api/:path*"
     }
   ]
 }
