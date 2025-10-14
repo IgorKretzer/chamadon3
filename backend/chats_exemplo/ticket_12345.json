@@ -1,0 +1,142 @@
+{
+  "_comentario": "Chat exemplo - Problema com Quadro de Horários - Constraint violation",
+  "ticket_numero": "12345",
+  "titulo": "Erro ao salvar alterações no quadro de horários",
+  "cliente": "Faculdade Exemplo",
+  "data_abertura": "2025-10-10T14:30:00",
+  "status": "Aguardando análise",
+  "historico_chat": [
+    {
+      "autor": "Sistema",
+      "mensagem": "Olá! 😊 Seja bem-vindo(a) ao atendimento Sponte! Como posso ajudar?",
+      "data": "14:30"
+    },
+    {
+      "autor": "Coordenação - Maria Silva",
+      "mensagem": "Boa tarde! Estou com urgência aqui, preciso ajustar o quadro de horários e está dando erro",
+      "data": "14:31"
+    },
+    {
+      "autor": "Atendente - Carlos",
+      "mensagem": "Entrou na conversa",
+      "data": "14:31"
+    },
+    {
+      "autor": "Atendente - Carlos",
+      "mensagem": "Boa tarde Maria! Tudo bem? Pode me dar mais detalhes sobre o erro?",
+      "data": "14:32"
+    },
+    {
+      "autor": "Coordenação - Maria Silva",
+      "mensagem": "Então, entro no menu Pedagógico > Quadro de Horários, faço as alterações na turma do ADS 3º Semestre e quando clico em Salvar aparece um erro",
+      "data": "14:33"
+    },
+    {
+      "autor": "Atendente - Carlos",
+      "mensagem": "Qual mensagem de erro aparece?",
+      "data": "14:33"
+    },
+    {
+      "autor": "Coordenação - Maria Silva",
+      "mensagem": "Constraint violation on table TB_HORARIOS: duplicate key value violates unique constraint",
+      "data": "14:34"
+    },
+    {
+      "autor": "Coordenação - Maria Silva",
+      "mensagem": "[Anexou imagem: erro_quadro_horarios.png]",
+      "data": "14:34"
+    },
+    {
+      "autor": "Atendente - Carlos",
+      "mensagem": "Entendi. Esse erro indica que há um conflito de chave única no banco de dados. Deixa eu verificar isso com a equipe técnica",
+      "data": "14:35"
+    },
+    {
+      "autor": "Coordenação - Maria Silva",
+      "mensagem": "Carlos, isso é urgente. O semestre está começando na próxima semana e preciso deixar os horários prontos",
+      "data": "14:36"
+    },
+    {
+      "autor": "Atendente - Carlos",
+      "mensagem": "Sim, entendo perfeitamente a urgência. Você consegue me passar o código da sua base/unidade?",
+      "data": "14:37"
+    },
+    {
+      "autor": "Coordenação - Maria Silva",
+      "mensagem": "É a base 60714",
+      "data": "14:37"
+    },
+    {
+      "autor": "Atendente - Carlos",
+      "mensagem": "Perfeito. Esse erro acontece em qualquer alteração no quadro de horários ou só nessa turma específica?",
+      "data": "14:38"
+    },
+    {
+      "autor": "Coordenação - Maria Silva",
+      "mensagem": "Testei só nessa turma do ADS 3º Semestre. Tenho medo de mexer nas outras e dar o mesmo problema",
+      "data": "14:39"
+    },
+    {
+      "autor": "Atendente - Carlos",
+      "mensagem": "Entendo. Vou abrir uma demanda urgente para o time de desenvolvimento investigar esse problema de constraint no banco de dados",
+      "data": "14:40"
+    },
+    {
+      "autor": "Coordenação - Maria Silva",
+      "mensagem": "Mas vai demorar muito? Realmente preciso resolver isso logo",
+      "data": "14:41"
+    },
+    {
+      "autor": "Atendente - Carlos",
+      "mensagem": "Vou marcar como URGENTE devido ao início do semestre. Pode me passar um email para retorno?",
+      "data": "14:42"
+    },
+    {
+      "autor": "Coordenação - Maria Silva",
+      "mensagem": "coordenacao@faculdadeexemplo.edu.br",
+      "data": "14:42"
+    },
+    {
+      "autor": "Atendente - Carlos",
+      "mensagem": "Anotado! Vou escalar isso agora mesmo para o time. Qual versão do sistema vocês estão usando?",
+      "data": "14:43"
+    },
+    {
+      "autor": "Coordenação - Maria Silva",
+      "mensagem": "Estamos na versão 12.0.1",
+      "data": "14:43"
+    },
+    {
+      "autor": "Atendente - Carlos",
+      "mensagem": "Perfeito. Vou abrir o chamado técnico agora. Em breve o time vai analisar e entrar em contato",
+      "data": "14:44"
+    },
+    {
+      "autor": "Coordenação - Maria Silva",
+      "mensagem": "Ok, obrigada Carlos. Aguardo retorno urgente!",
+      "data": "14:45"
+    },
+    {
+      "autor": "Atendente - Carlos",
+      "mensagem": "De nada! Já está registrado com prioridade alta. Tenha um ótimo dia!",
+      "data": "14:45"
+    },
+    {
+      "autor": "Sistema",
+      "mensagem": "Chat finalizado. A Sponte agradece o seu contato! 💙",
+      "data": "14:46"
+    }
+  ],
+  "analise_esperada": {
+    "tipo": "inconsistencia",
+    "modulo": "Pedagógico",
+    "chamado_texto": "VERSÃO DO SISTEMA EM QUE O PROBLEMA OCORREU:\nR = 12.0.1\n\nCÓDIGO DA BASE QUE APRESENTA O PROBLEMA:\nR = 60714\n\nJUSTIFICATIVA DA URGÊNCIA:\nR = Coordenação acadêmica impossibilitada de ajustar quadro de horários. Problema identificado em pelo menos 1 turma, pode afetar outras. Urgência ALTA devido ao início do semestre letivo próximo.\n\nMENU/LOCAL DO SISTEMA EM QUE ACONTECE:\nR = Pedagógico > Quadro de Horários\n\nBRIEFING:\nR = Ao acessar o menu Pedagógico > Quadro de Horários e tentar salvar as alterações da turma \"ADS 3º Semestre\", o sistema retorna erro de violação de constraint no banco de dados. O erro ocorre ao clicar em \"Salvar\" após fazer qualquer alteração nos horários. Mensagem de erro: \"Constraint violation on table TB_HORARIOS: duplicate key value violates unique constraint\". O problema impede que a coordenação realize ajustes necessários no quadro de horários. A coordenadora relatou urgência devido ao início do semestre letivo na próxima semana.\n\nEXEMPLOS (OBRIGATÓRIO):\nR = Turma afetada: ADS 3º Semestre\nBase: 60714\nCliente: Faculdade Exemplo\nErro: Constraint violation on table TB_HORARIOS: duplicate key value violates unique constraint\nTipo de operação: Salvar alterações no quadro de horários\n\nOBS:\nR = Email para retorno: coordenacao@faculdadeexemplo.edu.br\nAtendente: Carlos\nData do reporte: 2025-10-10T14:30:00\nErro técnico: Constraint violation on table TB_HORARIOS - indica possível problema de dados duplicados ou regras de integridade do banco de dados. Coordenadora testou apenas na turma ADS 3º Semestre, não confirmado se afeta outras turmas.",
+    "metadata": {
+      "tela": "Quadro de Horários",
+      "acao": "Salvar alterações",
+      "erro": "Constraint violation on table TB_HORARIOS",
+      "impacto": "Coordenação bloqueada para ajustar horários"
+    }
+  }
+}
+

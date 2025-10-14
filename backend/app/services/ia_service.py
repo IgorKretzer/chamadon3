@@ -10,7 +10,8 @@ class IAService:
         
         if api_key and api_key != "sua_chave_aqui":
             genai.configure(api_key=api_key)
-            self.model = genai.GenerativeModel('gemini-pro')
+            # Usando Gemini 2.5 Flash - rápido e estável
+            self.model = genai.GenerativeModel('models/gemini-2.5-flash')
             self.mock_mode = False
         else:
             self.mock_mode = True
