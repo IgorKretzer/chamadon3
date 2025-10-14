@@ -185,6 +185,29 @@ class Database:
         
         return deletados
     
+    def limpar_todas_analises(self):
+        """Remove todas as análises do banco de dados"""
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        
+        # Deleta feedbacks primeiro (foreign key)
+        cursor.execute("DELETE FROM feedbacks")
+        
+        # Deleta análises
+        cursor.execute("DELETE FROM analises")
+        deletados = cursor.rowcount
+        
+        # Deleta estatísticas diárias
+        cursor.execute("DELETE FROM estatisticas_diarias")
+        
+        # Limpa cache também
+        cursor.execute("DELETE FROM tickets_cache")
+        
+        conn.commit()
+        conn.close()
+        
+        return deletados
+    
     # ==================== ESTATÍSTICAS ====================
     
     def get_estatisticas_periodo(self, dias: int = 7) -> Dict[str, Any]:

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { 
   getEstatisticas, 
   getAnalisesRecentes,
-  limparCache 
+  limparCache,
+  limparAnalises 
 } from '../services/api'
 import { 
   TrendingUp, 
@@ -16,24 +17,17 @@ import {
 
 function DashboardPage() {
   const [stats, setStats] = useState(null)
-  const [analises, setAnalises] = useState([])
   const [periodo, setPeriodo] = useState(7)
   const [loading, setLoading] = useState(true)
   const [erro, setErro] = useState(null)
-  const [analiseExpandida, setAnaliseExpandida] = useState(null)
 
   const carregarDados = async () => {
     setLoading(true)
     setErro(null)
     
     try {
-      const [statsData, analisesData] = await Promise.all([
-        getEstatisticas(periodo),
-        getAnalisesRecentes(10)
-      ])
-      
+      const statsData = await getEstatisticas(periodo)
       setStats(statsData)
-      setAnalises(analisesData.analises)
     } catch (error) {
       console.error('Erro ao carregar dados:', error)
       setErro('Erro ao carregar estatísticas')
@@ -54,6 +48,19 @@ function DashboardPage() {
         carregarDados()
       } catch (error) {
         alert('Erro ao limpar cache')
+      }
+    }
+  }
+
+  const handleLimparAnalises = async () => {
+    if (confirm('⚠️ ATENÇÃO: Isso vai deletar TODAS as análises, feedbacks e estatísticas do banco de dados. Deseja continuar?')) {
+      try {
+        const resultado = await limparAnalises()
+        alert(`✅ ${resultado.mensagem}`)
+        carregarDados() // Recarrega os dados
+      } catch (error) {
+        alert('❌ Erro ao limpar análises')
+        console.error(error)
       }
     }
   }
@@ -113,6 +120,14 @@ function DashboardPage() {
             <button onClick={handleLimparCache} className="btn-secondary">
               <Trash2 size={18} />
               Limpar Cache
+            </button>
+            <button 
+              onClick={handleLimparAnalises} 
+              className="btn-secondary"
+              style={{ color: 'var(--color-danger)', borderColor: 'var(--color-danger)' }}
+            >
+              <Trash2 size={18} />
+              Limpar Dados
             </button>
           </div>
         </div>
@@ -201,66 +216,6 @@ function DashboardPage() {
           </div>
         )}
 
-        {/* Análises Recentes */}
-        {analises.length > 0 && (
-          <div className="section">
-            <h3 className="section-title">📋 Análises Recentes</h3>
-            <div className="analises-recentes-lista">
-              {analises.map((analise) => (
-                <div key={analise.id} className="analise-item">
-                  <div 
-                    className="analise-header"
-                    onClick={() => setAnaliseExpandida(analiseExpandida === analise.id ? null : analise.id)}
-                  >
-                    <div className="analise-info">
-                      <span className="ticket-badge">#{analise.ticket_numero}</span>
-                      <span className="analise-usuario">{analise.usuario_nome || 'Anônimo'}</span>
-                      <span className={`type-badge ${analise.tipo_identificado}`}>
-                        {analise.tipo_identificado || 'N/A'}
-                      </span>
-                      {analise.modulo_identificado && (
-                        <span className="analise-modulo">📦 {analise.modulo_identificado}</span>
-                      )}
-                    </div>
-                    <div className="analise-meta">
-                      <span className="date-cell">{formatarData(analise.data_analise)}</span>
-                      {analise.foi_copiado ? (
-                        <span className="status-badge copiado">Copiado</span>
-                      ) : (
-                        <span className="status-badge pendente">Pendente</span>
-                      )}
-                      <button className="btn-expand">
-                        {analiseExpandida === analise.id ? '▲' : '▼'}
-                      </button>
-                    </div>
-                  </div>
-                  
-                  {analiseExpandida === analise.id && analise.chamado_gerado && (
-                    <div className="analise-conteudo">
-                      <div className="analise-sugestao">
-                        <div className="sugestao-header">
-                          <h4>💡 Sugestão de Chamado</h4>
-                          <button 
-                            className="btn-copy-small"
-                            onClick={() => {
-                              navigator.clipboard.writeText(analise.chamado_gerado)
-                              alert('Sugestão copiada!')
-                            }}
-                          >
-                            📋 Copiar
-                          </button>
-                        </div>
-                        <div className="sugestao-texto">
-                          <pre>{analise.chamado_gerado}</pre>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
 
         {/* Empty State */}
         {stats.total_analises === 0 && (

@@ -81,5 +81,14 @@ export const limparCache = async () => {
   }
 }
 
+export const limparAnalises = async () => {
+  try {
+    const response = await api.delete('/api/estatisticas/limpar-analises')
+    return response.data
+  } catch (error) {
+    throw error.response?.data || error.message
+  }
+}
+
 export default api
 

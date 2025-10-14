@@ -66,3 +66,19 @@ async def limpar_cache():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao limpar cache: {str(e)}")
 
+@router.delete("/limpar-analises")
+async def limpar_analises():
+    """
+    Remove todas as análises do banco de dados
+    """
+    try:
+        deletados = db.limpar_todas_analises()
+        return {
+            "sucesso": True,
+            "mensagem": f"{deletados} análises removidas com sucesso",
+            "total_deletado": deletados
+        }
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erro ao limpar análises: {str(e)}")
+
