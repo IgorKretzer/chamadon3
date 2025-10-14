@@ -1,6 +1,10 @@
 import axios from 'axios'
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+// Em produção usa o backend no Render, em desenvolvimento usa localhost
+const API_BASE_URL = import.meta.env.VITE_API_URL || 
+                     (import.meta.env.MODE === 'production' 
+                       ? 'https://ia-chamados-backend.onrender.com' 
+                       : 'http://localhost:8000')
 
 const api = axios.create({
   baseURL: API_BASE_URL,
