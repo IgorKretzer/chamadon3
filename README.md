@@ -2,6 +2,108 @@
 
 Sistema inteligente para análise de tickets do Movidesk e geração automática de sugestões de chamados para o sistema Sponte.
 
+## 🌐 Deploy Online
+
+✅ **Sistema em Produção:**
+
+- **Frontend (Vercel)**: https://ia-chamados-sponte-c97u9qfge-igorkretzers-projects.vercel.app
+- **GitHub**: https://github.com/IgorKretzer/chamadon3
+- **Backend (Render)**: Siga as instruções abaixo
+
+---
+
+## 🚀 Guia de Deploy Completo
+
+### 📦 Deploy do Frontend no Vercel
+
+✅ **Status**: Concluído e Online!
+
+O frontend já está deployado em: https://ia-chamados-sponte-c97u9qfge-igorkretzers-projects.vercel.app
+
+**Para fazer redeploy:**
+```bash
+vercel --prod
+```
+
+### 🔧 Deploy do Backend no Render.com
+
+#### Passo 1: Criar Conta
+1. Acesse: https://render.com
+2. **Sign up with GitHub** (recomendado)
+3. Autorize o Render
+
+#### Passo 2: Criar Web Service
+1. No Dashboard, clique em **"New +"** > **"Web Service"**
+2. Conecte o repositório: **chamadon3**
+
+#### Passo 3: Configurações
+
+| Campo | Valor |
+|-------|-------|
+| **Name** | `ia-chamados-backend` |
+| **Region** | `Oregon (US West)` |
+| **Branch** | `main` |
+| **Root Directory** | `backend` |
+| **Build Command** | `pip install -r requirements.txt` |
+| **Start Command** | `uvicorn app.main:app --host 0.0.0.0 --port $PORT` |
+| **Instance Type** | `Free` |
+
+#### Passo 4: Variáveis de Ambiente (IMPORTANTE!)
+
+Adicione em **Environment Variables**:
+
+```
+PYTHON_VERSION=3.10.0
+GEMINI_API_KEY=sua_chave_aqui
+MOVIDESK_API_TOKEN=seu_token_aqui (opcional)
+DATABASE_PATH=/opt/render/project/src/ia_chamados.db
+```
+
+🔑 **Obter Gemini API Key (grátis)**: https://aistudio.google.com/app/apikey
+
+#### Passo 5: Deploy!
+1. Clique em **"Create Web Service"**
+2. Aguarde 5-10 minutos
+3. Sua URL será: `https://ia-chamados-backend.onrender.com`
+
+#### Passo 6: Conectar Frontend ao Backend
+
+1. Acesse: https://vercel.com/igorkretzers-projects/ia-chamados-sponte/settings/environment-variables
+2. Adicione:
+   ```
+   VITE_API_URL=https://ia-chamados-backend.onrender.com
+   ```
+3. Edite `vercel.json` localmente:
+   ```json
+   {
+     "rewrites": [
+       {
+         "source": "/api/:path*",
+         "destination": "https://ia-chamados-backend.onrender.com/:path*"
+       }
+     ]
+   }
+   ```
+4. Faça push e redeploy:
+   ```bash
+   git add vercel.json
+   git commit -m "Conectar backend"
+   git push
+   vercel --prod
+   ```
+
+### ✅ Testar o Sistema
+
+**Backend:**
+```bash
+curl https://ia-chamados-backend.onrender.com/health
+```
+
+**Frontend:**
+Acesse a URL do Vercel e teste analisando um ticket!
+
+---
+
 ## 📋 Sobre o Projeto
 
 Esta aplicação utiliza Inteligência Artificial (Google Gemini) para:
@@ -25,13 +127,25 @@ Esta aplicação utiliza Inteligência Artificial (Google Gemini) para:
 - **Estilo**: CSS puro (inspirado no ChatGPT)
 - **Roteamento**: React Router
 
-## 🚀 Instalação e Execução
+## ⚡ Início Rápido (Desenvolvimento Local)
 
 ### Pré-requisitos
 
 - Python 3.10+
 - Node.js 18+
 - npm ou yarn
+
+### 🎯 Opção 1: Script Automático
+
+```bash
+# Linux/Mac
+./start.sh
+
+# Windows
+start.bat
+```
+
+### 🔧 Opção 2: Manual
 
 ### 1️⃣ Configurar Backend
 
@@ -149,7 +263,7 @@ O sistema utiliza SQLite com as seguintes tabelas:
 - [ ] Integração direta com sistema de chamados
 - [ ] Fine-tuning com exemplos reais
 - [ ] Vector Database (RAG) para base conhecimento
-- [ ] Deploy em produção
+- [x] Deploy em produção (Vercel + Render)
 
 ## 🧪 Modo de Demonstração
 
@@ -280,6 +394,36 @@ Desenvolvido para **Sponte - N3 Suporte**
 
 ---
 
+## 📚 Comandos Úteis
+
+### Git
+```bash
+# Atualizar repositório
+git add .
+git commit -m "mensagem"
+git push origin main
+```
+
+### Vercel (Frontend)
+```bash
+# Deploy em produção
+vercel --prod
+
+# Ver logs
+vercel logs
+
+# Ver deployments
+vercel ls
+```
+
+### Render (Backend)
+- Ver logs: Dashboard > Service > Logs
+- Redeploy: Dashboard > Manual Deploy
+- Variáveis: Dashboard > Environment
+
+---
+
 **⚡ Versão**: 1.0.0  
-**📅 Última atualização**: Outubro 2025
+**📅 Última atualização**: Outubro 2025  
+**🌐 Status**: Online em Produção
 

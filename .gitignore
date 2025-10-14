@@ -42,3 +42,17 @@ Thumbs.db
 
 # Vercel
 .vercel
+
+# Documentação interna (não versionar)
+CHANGELOG.md
+COMANDOS_RAPIDOS.md
+COMECE_AQUI.md
+CONTRIBUTING.md
+DEPLOY_VERCEL.md
+DEPLOY_GITHUB.md
+DEPLOY_RENDER_PASSO_A_PASSO.md
+INTEGRACAO_MOVIDESK.md
+RESUMO_PROJETO.md
+SETUP.md
+TESTES.md
+estrutura_projeto.txt
