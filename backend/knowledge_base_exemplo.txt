@@ -1,0 +1,195 @@
+# =================================================
+# BASE DE CONHECIMENTO - SISTEMA SPONTE
+# =================================================
+# Este arquivo serve como exemplo de documentação
+# que você pode expandir com informações reais
+# do seu sistema Sponte
+# =================================================
+
+## MÓDULOS DO SISTEMA SPONTE
+
+### 1. MÓDULO ACADÊMICO
+**Funcionalidades:**
+- Gestão de turmas e matrizes curriculares
+- Quadro de horários
+- Diário de classe (notas e frequências)
+- Lançamento de conceitos e avaliações
+- Controle de aprovação/reprovação
+- Calendário acadêmico
+
+**Telas Principais:**
+- Acadêmico > Quadro de Horários
+- Acadêmico > Turmas
+- Acadêmico > Matriz Curricular
+- Acadêmico > Diário de Classe
+
+**Erros Comuns:**
+- "Constraint violation on TB_HORARIOS" → Horário duplicado ou conflito de alocação
+- "Turma sem matriz curricular" → Matriz não vinculada à turma
+- "Período letivo não aberto" → Operação fora do período permitido
+
+### 2. MÓDULO FINANCEIRO
+**Funcionalidades:**
+- Emissão de boletos bancários
+- Controle de inadimplência
+- Renegociação de débitos
+- Aplicação de descontos
+- Controle de baixas e pagamentos
+- Integração bancária (CNAB)
+
+**Telas Principais:**
+- Financeiro > Gerar Boletos
+- Financeiro > Controle de Inadimplência
+- Financeiro > Renegociação
+- Financeiro > Descontos
+
+**Erros Comuns:**
+- "Banco não configurado" → Convênio bancário não cadastrado
+- "Erro ao gerar CNAB" → Problema nos dados da remessa
+- "Aluno sem responsável financeiro" → Falta vincular responsável
+
+### 3. MÓDULO SECRETARIA
+**Funcionalidades:**
+- Cadastro de alunos
+- Processo de matrícula
+- Emissão de documentos (declarações, históricos)
+- Controle de documentação
+- Transferências e trancamentos
+
+**Telas Principais:**
+- Secretaria > Ficha do Aluno
+- Secretaria > Matrícula
+- Secretaria > Documentos
+- Secretaria > Histórico Escolar
+
+**Erros Comuns:**
+- "CPF já cadastrado" → Aluno duplicado
+- "Documentação incompleta" → Faltam documentos obrigatórios
+- "Período de matrícula encerrado" → Fora do prazo
+
+### 4. PORTAL DO ALUNO
+**Funcionalidades:**
+- Consulta de notas e faltas
+- Download de boletos
+- Solicitação de documentos
+- Visualização de grade horária
+- Avisos e comunicados
+
+**Erros Comuns:**
+- "Acesso negado" → Problema de permissões
+- "Aluno sem login" → Credenciais não geradas
+- "Timeout ao carregar notas" → Performance
+
+### 5. MÓDULO BIBLIOTECA
+**Funcionalidades:**
+- Controle de acervo
+- Empréstimos e devoluções
+- Reservas de livros
+- Multas por atraso
+
+## TIPOS DE ERROS FREQUENTES
+
+### Erros de Banco de Dados
+- **Constraint violation**: Violação de regra de integridade
+- **Duplicate key**: Tentativa de inserir chave duplicada
+- **Foreign key violation**: Referência inválida entre tabelas
+- **Deadlock**: Conflito de transações simultâneas
+
+### Erros de Integração
+- **Timeout**: Operação demorou mais que o esperado
+- **Connection refused**: Serviço externo indisponível
+- **Invalid credentials**: Credenciais incorretas
+
+### Erros de Permissão
+- **Access denied**: Usuário sem permissão
+- **Invalid token**: Sessão expirada
+
+## ESTRUTURA IDEAL DE CHAMADO
+
+Um bom chamado deve conter:
+
+1. **TÍTULO**: Resumo objetivo (max 100 caracteres)
+2. **MÓDULO**: Qual módulo está afetado
+3. **DESCRIÇÃO**: Contexto completo do problema
+4. **PASSOS PARA REPRODUZIR**: Sequência exata
+5. **ERRO**: Mensagem de erro literal
+6. **IMPACTO**: Quantos usuários afetados, urgência
+7. **INFORMAÇÕES ADICIONAIS**: Ambiente, horário, etc
+
+## EXEMPLOS DE BONS CHAMADOS
+
+### Exemplo 1: Erro no Quadro de Horários
+```
+TÍTULO: Erro ao salvar Quadro de Horários - Constraint violation
+
+MÓDULO: Acadêmico
+
+DESCRIÇÃO:
+Ao tentar salvar alterações no quadro de horários da turma 
+"Engenharia 5º Período", o sistema retorna erro de constraint 
+violation. O erro ocorre mesmo quando não há conflito aparente 
+de horários.
+
+PASSOS PARA REPRODUZIR:
+1. Acessar Acadêmico > Quadro de Horários
+2. Selecionar turma "Engenharia 5º Período"
+3. Alterar horário da disciplina "Cálculo III" de segunda 19h para terça 19h
+4. Clicar em "Salvar"
+5. Erro é exibido
+
+ERRO:
+"Constraint violation on table TB_HORARIOS: duplicate key value 
+violates unique constraint PK_HORARIO_DISCIPLINA"
+
+IMPACTO:
+Coordenação não consegue ajustar grade para início do semestre.
+Urgência: ALTA - Início das aulas em 3 dias.
+```
+
+### Exemplo 2: Erro ao Gerar Boletos
+```
+TÍTULO: Erro ao gerar boletos - Banco não configurado
+
+MÓDULO: Financeiro
+
+DESCRIÇÃO:
+Ao tentar gerar boletos para alunos do curso de Administração,
+o sistema retorna erro informando que o banco não está configurado.
+Outros cursos funcionam normalmente.
+
+PASSOS PARA REPRODUZIR:
+1. Acessar Financeiro > Gerar Boletos
+2. Filtrar por curso "Administração"
+3. Selecionar alunos
+4. Clicar em "Gerar Boletos"
+5. Erro aparece
+
+ERRO:
+"Banco conveniado não configurado para o curso selecionado"
+
+IMPACTO:
+45 alunos sem boleto para vencimento de amanhã.
+Urgência: URGENTE
+```
+
+## GLOSSÁRIO DE TERMOS
+
+- **RM**: Registro de Matrícula (código do aluno)
+- **Matriz Curricular**: Grade de disciplinas do curso
+- **Período Letivo**: Semestre ou ano acadêmico
+- **CNAB**: Arquivo de remessa/retorno bancário
+- **Portal**: Portal do Aluno (acesso web)
+- **Responsável Financeiro**: Quem paga as mensalidades
+
+## NOTAS IMPORTANTES
+
+- Sempre coletar mensagem de erro EXATA
+- Informar ambiente (produção/homologação)
+- Especificar horário de ocorrência
+- Indicar se é problema recorrente ou pontual
+- Anexar prints quando possível
+
+=================================================
+FIM DA BASE DE CONHECIMENTO
+=================================================
+

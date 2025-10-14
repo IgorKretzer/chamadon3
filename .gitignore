@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+backend/venv/
+backend/env/
+backend/ENV/
+*.egg-info/
+dist/
+build/
+
+# Logs
+*.log
+backend/backend.log
+frontend.log
+
+# Database
+backend/ia_chamados.db
+*.db
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Vercel
+.vercel
