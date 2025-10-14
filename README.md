@@ -6,7 +6,7 @@ Sistema inteligente para análise de tickets do Movidesk e geração automática
 
 ✅ **Sistema em Produção:**
 
-- **Frontend (Vercel)**: https://ia-chamados-sponte-5pmz1zj5l-igorkretzers-projects.vercel.app
+- **Frontend (Vercel)**: https://ia-chamados-sponte-c43vp6skw-igorkretzers-projects.vercel.app
 - **Backend (Render)**: https://ia-chamados-backend.onrender.com
 - **GitHub**: https://github.com/IgorKretzer/chamadon3
 
