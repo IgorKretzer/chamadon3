@@ -58,6 +58,7 @@ class AnaliseRecente(BaseModel):
     data_analise: str
     tipo_identificado: Optional[str]
     modulo_identificado: Optional[str]
+    chamado_gerado: Optional[str]
     foi_copiado: bool
 
 class AnalisesRecentesResponse(BaseModel):

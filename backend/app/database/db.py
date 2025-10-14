@@ -279,6 +279,7 @@ class Database:
                 data_analise,
                 tipo_identificado,
                 modulo_identificado,
+                chamado_gerado,
                 foi_copiado
             FROM analises
             ORDER BY data_analise DESC
