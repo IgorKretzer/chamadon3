@@ -10,6 +10,7 @@ from app.models.schemas import (
 from app.services.movidesk_service import MovideskService
 from app.services.ia_service import IAService
 from app.database.db import Database
+from app.services.firebase_service import firebase_service
 import time
 
 router = APIRouter(prefix="/api/analise", tags=["Análise"])
@@ -49,8 +50,22 @@ async def analisar_ticket(request: AnalisarTicketRequest):
         fim = time.time()
         tempo_ms = int((fim - inicio) * 1000)
         
-        # 5. Registra no banco
-        analise_id = db.registrar_analise(
+        # 5. Registra no Firebase (e SQLite como backup)
+        analise_id_firebase = None
+        analise_id_sqlite = None
+        
+        # Tenta salvar no Firebase primeiro
+        if firebase_service.is_connected():
+            analise_id_firebase = firebase_service.registrar_analise(
+                ticket_numero=request.ticket_numero,
+                dados_movidesk=dados_ticket,
+                resultado_ia=resultado_ia,
+                tempo_ms=tempo_ms,
+                usuario=request.usuario_nome
+            )
+        
+        # Salva no SQLite como backup
+        analise_id_sqlite = db.registrar_analise(
             ticket_numero=request.ticket_numero,
             dados_movidesk=dados_ticket,
             resultado_ia=resultado_ia,
@@ -58,7 +73,12 @@ async def analisar_ticket(request: AnalisarTicketRequest):
             usuario=request.usuario_nome
         )
         
-        print(f"✅ Análise concluída em {tempo_ms}ms (ID: {analise_id})")
+        # Usa o ID do Firebase se disponível, senão usa o SQLite
+        analise_id = analise_id_firebase or str(analise_id_sqlite)
+        
+        print(f"✅ Análise concluída em {tempo_ms}ms")
+        print(f"   📊 Firebase ID: {analise_id_firebase or 'N/A'}")
+        print(f"   💾 SQLite ID: {analise_id_sqlite}")
         
         return AnalisarTicketResponse(
             sucesso=True,
@@ -79,7 +99,21 @@ async def registrar_feedback(request: FeedbackRequest):
     Registra feedback do suporte sobre a análise
     """
     try:
-        feedback_id = db.registrar_feedback(
+        feedback_id_firebase = None
+        feedback_id_sqlite = None
+        
+        # Tenta salvar no Firebase primeiro
+        if firebase_service.is_connected():
+            feedback_id_firebase = firebase_service.registrar_feedback(
+                analise_id=request.analise_id,
+                foi_util=request.foi_util,
+                nota=request.nota,
+                comentario=request.comentario,
+                texto_final=request.texto_final_usado
+            )
+        
+        # Salva no SQLite como backup
+        feedback_id_sqlite = db.registrar_feedback(
             analise_id=request.analise_id,
             foi_util=request.foi_util,
             nota=request.nota,
@@ -87,8 +121,12 @@ async def registrar_feedback(request: FeedbackRequest):
             texto_final=request.texto_final_usado
         )
         
+        feedback_id = feedback_id_firebase or str(feedback_id_sqlite)
+        
         emoji = "👍" if request.foi_util else "👎"
-        print(f"{emoji} Feedback registrado (ID: {feedback_id})")
+        print(f"{emoji} Feedback registrado")
+        print(f"   📊 Firebase ID: {feedback_id_firebase or 'N/A'}")
+        print(f"   💾 SQLite ID: {feedback_id_sqlite}")
         
         return FeedbackResponse(
             sucesso=True,

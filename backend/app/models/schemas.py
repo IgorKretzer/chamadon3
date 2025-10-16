@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional, List
+from typing import Optional, List, Union
 from datetime import datetime
 
 # ==================== REQUEST MODELS ====================
@@ -9,14 +9,14 @@ class AnalisarTicketRequest(BaseModel):
     usuario_nome: Optional[str] = Field(None, description="Nome do suporte que está usando")
 
 class FeedbackRequest(BaseModel):
-    analise_id: int
+    analise_id: Union[int, str]
     foi_util: bool
     nota: Optional[int] = Field(None, ge=1, le=5)
     comentario: Optional[str] = None
     texto_final_usado: Optional[str] = None
 
 class MarcarCopiado(BaseModel):
-    analise_id: int
+    analise_id: Union[int, str]
 
 # ==================== RESPONSE MODELS ====================
 
@@ -28,7 +28,7 @@ class ResultadoIA(BaseModel):
 
 class AnalisarTicketResponse(BaseModel):
     sucesso: bool
-    analise_id: int
+    analise_id: Union[int, str]
     ticket_numero: str
     resultado: ResultadoIA
     tempo_processamento_ms: int
@@ -36,7 +36,7 @@ class AnalisarTicketResponse(BaseModel):
 
 class FeedbackResponse(BaseModel):
     sucesso: bool
-    feedback_id: int
+    feedback_id: Union[int, str]
     mensagem: str
 
 class ModuloStats(BaseModel):
